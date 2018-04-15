@@ -2,6 +2,7 @@ package com.example.android.simplefeeder;
 
 import android.text.Html;
 import android.util.Log;
+import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -14,6 +15,8 @@ import java.util.List;
 
 import static android.R.attr.id;
 import static android.R.id.list;
+import static android.util.Xml.newPullParser;
+import static org.xmlpull.v1.XmlPullParser.END_TAG;
 
 /**
  * Created by lenovo on 4/14/2018.
@@ -27,8 +30,8 @@ public class ParseXML {
 
         Log.d("result", "in parse class parse method");
         try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser parser = factory.newPullParser();
+         //   XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(is, null);
             parser.nextTag();
@@ -46,17 +49,18 @@ public class ParseXML {
     public static List<Details> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
        List<Details> listvalue=new ArrayList<>();
         parser.require(XmlPullParser.START_TAG, ns, "rss");
-        while (parser.next() != XmlPullParser.END_TAG) {
-            Log.d("result", "(XmlPullParser.END_TAG)");
-            //Log.d("result", parser.getName());
+        while (parser.next() != XmlPullParser.END_DOCUMENT) {
+            String name = parser.getName();
            if (parser.getEventType() != XmlPullParser.START_TAG)
               continue;
-            Log.d("result", parser.getName());
+       //     Log.d("result", parser.getName());
             if (parser.getName().equals("item")) {
                 listvalue.add(readValues(parser));
             } else
-                skip(parser);
-            Log.d("result", "in loooooooop");
+
+           //    skip(parser);
+            Log.d("result", "in else loooooooop");
+
         }
 
         return listvalue;
@@ -67,7 +71,8 @@ public class ParseXML {
         String title = null;
         String description = null;
         String link = null;
-        while (parser.next() != XmlPullParser.END_TAG) {
+
+        while (parser.next() != XmlPullParser.END_DOCUMENT) {
 
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -75,13 +80,24 @@ public class ParseXML {
             String name = parser.getName();
             Log.d("result", name);
             if (name.equals("title"))
-                title=readTitle(parser);
+            {  title=readTitle(parser);
+                Log.d("result", title);}
+
             else if(name.equals("description"))
+            {
                 description=readDescription(parser);
-            else if(name.equals(link))
-                link=readLink(parser);
+                Log.d("result", "in description condition");
+                Log.d("result", description);
+            }
+            else if(name.equals("media:thumbnail")) {
+
+                link = readLink(parser); Log.d("result", "in link condition");
+                Log.d("result", link);
+                break;
+            }
             else
-                skip(parser);
+                ;
+              //  skip(parser);
 
         }
         Log.d("result", title);
@@ -94,7 +110,7 @@ public class ParseXML {
     {
      parser.require(XmlPullParser.START_TAG,ns,"title");
         String val=readText(parser);
-        parser.require(XmlPullParser.END_TAG,ns,"title");
+        parser.require(END_TAG,ns,"title");
         return Html.fromHtml(val).toString();
 
     }
@@ -102,7 +118,7 @@ public class ParseXML {
     {
         parser.require(XmlPullParser.START_TAG,ns,"description");
         String val=readText(parser);
-        parser.require(XmlPullParser.END_TAG,ns,"description");
+        parser.require(END_TAG,ns,"description");
         return Html.fromHtml(val).toString();
 
     }
@@ -132,16 +148,17 @@ public class ParseXML {
         parser.next();
         while(depth!=0)
         {
-            if(parser.getEventType()==XmlPullParser.START_TAG) {
-                depth++;parser.next();
-            }
-            else if(parser.getEventType()==XmlPullParser.END_TAG)
-            {
-                depth--;parser.next();
-            }
 
-            else
-                parser.next();
+
+                if (parser.getEventType() == XmlPullParser.START_TAG) {
+                    depth++;
+                    parser.next();
+                } else if (parser.getEventType() == END_TAG) {
+                    depth--;
+                    parser.next();
+                } else
+                    parser.next();
+
         }
     }
 }

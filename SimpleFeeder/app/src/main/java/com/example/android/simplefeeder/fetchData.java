@@ -57,6 +57,7 @@ public class fetchData {
             if (connection != null)
                 connection.disconnect();
         }
+        Log.d("result", "going to return result 2");
         return array;
 
     }

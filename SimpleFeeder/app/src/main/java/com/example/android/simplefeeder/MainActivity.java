@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         new asynTask().execute();
-        adapter=new AdapterClass(detailValues,getApplicationContext());
-        recyclerView.setAdapter(adapter);
+
         //display_url.setText(variable);
 
 
@@ -73,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
 
             super.onPostExecute(aVoid);
+            Log.d("result", "on post execute");
+            adapter=new AdapterClass(detailValues,getApplicationContext());
+            recyclerView.setAdapter(adapter);
 
 
 
@@ -96,8 +98,12 @@ public class MainActivity extends AppCompatActivity {
             Log.d("result", variable);
 
            try{
-               detailValues= obj.makeConnection(variable);}catch (org.xmlpull.v1.XmlPullParserException e)
-           {e.printStackTrace();}
+               detailValues= obj.makeConnection(variable);
+               Log.d("result", "going to return result 3");
+           }catch (org.xmlpull.v1.XmlPullParserException e)
+           {e.printStackTrace();
+               Log.d("result", "caught in main error");}
+            Log.d("result", "going to return result null 4");
             return null;
         }
 
