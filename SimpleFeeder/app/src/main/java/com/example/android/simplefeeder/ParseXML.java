@@ -30,7 +30,7 @@ public class ParseXML {
 
         Log.d("result", "in parse class parse method");
         try {
-         //   XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            //   XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(is, null);
@@ -47,19 +47,19 @@ public class ParseXML {
     }
 
     public static List<Details> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
-       List<Details> listvalue=new ArrayList<>();
+        List<Details> listvalue = new ArrayList<>();
         parser.require(XmlPullParser.START_TAG, ns, "rss");
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
             String name = parser.getName();
-           if (parser.getEventType() != XmlPullParser.START_TAG)
-              continue;
-       //     Log.d("result", parser.getName());
+            if (parser.getEventType() != XmlPullParser.START_TAG)
+                continue;
+            //     Log.d("result", parser.getName());
             if (parser.getName().equals("item")) {
                 listvalue.add(readValues(parser));
             } else
 
-           //    skip(parser);
-            Log.d("result", "in else loooooooop");
+                //    skip(parser);
+                Log.d("result", "in else loooooooop");
 
         }
 
@@ -70,6 +70,7 @@ public class ParseXML {
         parser.require(XmlPullParser.START_TAG, ns, "item");
         String title = null;
         String description = null;
+        String imagelink = null;
         String link = null;
 
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
@@ -79,86 +80,63 @@ public class ParseXML {
             }
             String name = parser.getName();
             Log.d("result", name);
-            if (name.equals("title"))
-            {  title=readTitle(parser);
-                Log.d("result", title);}
-
-            else if(name.equals("description"))
-            {
-                description=readDescription(parser);
+            if (name.equals("title")) {
+                title = readTitle(parser);
+                Log.d("result", title);
+            } else if (name.equals("description")) {
+                description = readDescription(parser);
                 Log.d("result", "in description condition");
                 Log.d("result", description);
-            }
-            else if(name.equals("media:thumbnail")) {
+            } else if (name.equals("media:thumbnail")) {
 
-                link = readLink(parser); Log.d("result", "in link condition");
-                Log.d("result", link);
+                imagelink = readLink(parser);
+                Log.d("result", "in link condition");
+                Log.d("result", imagelink);
                 break;
-            }
-            else
+            } else if (name.equals("link")) {
+                link = readText(parser);
+                Log.d("result", link);
+            } else
                 ;
-              //  skip(parser);
+            //  skip(parser);
 
         }
         Log.d("result", title);
         Log.d("result", description);
-        Log.d("result", link);
-        return new Details(title,description,link);
+        Log.d("result", imagelink);
+        return new Details(title, description, imagelink, link);
 
     }
-    public static String readTitle(XmlPullParser parser)throws XmlPullParserException,IOException
-    {
-     parser.require(XmlPullParser.START_TAG,ns,"title");
-        String val=readText(parser);
-        parser.require(END_TAG,ns,"title");
+
+    public static String readTitle(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, ns, "title");
+        String val = readText(parser);
+        parser.require(END_TAG, ns, "title");
         return Html.fromHtml(val).toString();
 
     }
-    public static String readDescription(XmlPullParser parser)throws XmlPullParserException,IOException
-    {
-        parser.require(XmlPullParser.START_TAG,ns,"description");
-        String val=readText(parser);
-        parser.require(END_TAG,ns,"description");
+
+    public static String readDescription(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, ns, "description");
+        String val = readText(parser);
+        parser.require(END_TAG, ns, "description");
         return Html.fromHtml(val).toString();
 
     }
-    public static String readLink(XmlPullParser parser)throws XmlPullParserException,IOException
-    {
+
+    public static String readLink(XmlPullParser parser) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, ns, "media:thumbnail");
         String thumbnailUrl = parser.getAttributeValue(null, "url");
         parser.nextTag();
         return thumbnailUrl;
     }
-    public static String readText(XmlPullParser parser)throws XmlPullParserException,IOException
-    {
-     String result="";
-        if(parser.next()==XmlPullParser.TEXT)
-        {
-            result=parser.getText();
+
+    public static String readText(XmlPullParser parser) throws XmlPullParserException, IOException {
+        String result = "";
+        if (parser.next() == XmlPullParser.TEXT) {
+            result = parser.getText();
             parser.nextTag();
         }
         return result;
-    }
-    public static void skip(XmlPullParser parser)throws XmlPullParserException,IOException
-
-    {
-        if(parser.getEventType()!=XmlPullParser.START_TAG)
-            throw new IllegalStateException();
-        int depth=1;
-        parser.next();
-        while(depth!=0)
-        {
-
-
-                if (parser.getEventType() == XmlPullParser.START_TAG) {
-                    depth++;
-                    parser.next();
-                } else if (parser.getEventType() == END_TAG) {
-                    depth--;
-                    parser.next();
-                } else
-                    parser.next();
-
-        }
     }
 }

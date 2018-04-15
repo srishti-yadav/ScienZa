@@ -8,11 +8,13 @@ public class Details {
    private String title;
    private String description;
     private String image;
-    public Details(String title,String description,String image)
+    private String link;
+    public Details(String title,String description,String image,String link)
     {
        this.title=title;
         this.description=description;
         this.image=image;
+        this.link=link;
     }
 
     public String getTitle() {
@@ -23,5 +25,6 @@ public class Details {
         return description;
     }
      public String getImage(){return image;}
+    public String getLink(){return link;}
 
 }

@@ -34,6 +34,7 @@ import java.util.List;
 import static android.R.attr.button;
 import static android.R.attr.description;
 import static android.R.attr.name;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class MainActivity extends AppCompatActivity {
     private String variable;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     public List<Details> detailValues;
+    RecyclerView.LayoutManager mLayout;
 
 
 
@@ -52,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         detailValues=new ArrayList<>();
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+         mLayout=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayout);
         new asynTask().execute();
 
         //display_url.setText(variable);
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             super.onPostExecute(aVoid);
             Log.d("result", "on post execute");
-            adapter=new AdapterClass(detailValues,getApplicationContext());
+            adapter=new AdapterClass(detailValues,MainActivity.this);
             recyclerView.setAdapter(adapter);
 
 
