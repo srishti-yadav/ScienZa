@@ -16,6 +16,7 @@ public class WebActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_web);
         String uri;
         Bundle bundle= getIntent().getExtras();
