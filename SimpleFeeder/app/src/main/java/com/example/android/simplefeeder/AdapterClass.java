@@ -42,7 +42,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
         final Details details=detailValues.get(position);
         holder.title.setText(details.getTitle());
