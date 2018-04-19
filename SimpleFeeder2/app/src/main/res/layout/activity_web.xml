@@ -7,4 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.simplefeeder.WebActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarweb"
+        app:title="Web"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="#424242">
+     </android.support.v7.widget.Toolbar>
 </WebView>
