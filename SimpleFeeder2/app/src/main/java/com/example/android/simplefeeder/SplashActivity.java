@@ -16,6 +16,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run(){
                 android.content.Intent HomeIntent = new  android.content.Intent(SplashActivity.this,MainActivity.class);
                 startActivity(HomeIntent);
+<<<<<<< HEAD
                 finish();
                 }
                 },
@@ -23,3 +24,14 @@ public class SplashActivity extends AppCompatActivity {
         );
     }
 }
+=======
+
+                finish();
+
+            }
+            },
+                SPLASH_TIME_OUT
+        );
+    }
+}
+>>>>>>> 5973ff4dfbb3b73116a5fccc143f3bce88729dfe

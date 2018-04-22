@@ -15,8 +15,12 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/myStatusTheme">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5973ff4dfbb3b73116a5fccc143f3bce88729dfe
         </activity>
+
         <activity
             android:name=".WebActivity"
             android:label="Web"
@@ -32,6 +36,10 @@
             android:label="About"
             android:parentActivityName=".MainActivity"
             android:theme="@style/myStatusTheme" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5973ff4dfbb3b73116a5fccc143f3bce88729dfe
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
