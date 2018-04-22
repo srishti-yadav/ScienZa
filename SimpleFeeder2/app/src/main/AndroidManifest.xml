@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<<<<<<< HEAD
 >        <activity
+=======
+        <activity
+>>>>>>> d7e06ffbdcb6d67dc8d27c3fc6d9c78be1f75299
             android:name=".MainActivity"
             android:label="@string/app_name">
 
@@ -28,6 +32,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".WebActivity"
+            android:label="Web"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".BookmarkActivity"
+            android:label="Bookmarks"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".AboutActivity"
+                  android:label="About"
+            android:parentActivityName=".MainActivity"></activity>
+>>>>>>> d7e06ffbdcb6d67dc8d27c3fc6d9c78be1f75299
     </application>
 
 </manifest>

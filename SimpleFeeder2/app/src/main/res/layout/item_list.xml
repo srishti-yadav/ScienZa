@@ -49,7 +49,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:text="hey i am the description of this title"
+<<<<<<< HEAD
         android:textSize="15sp"
+=======
+        android:textSize="15dp"
+>>>>>>> d7e06ffbdcb6d67dc8d27c3fc6d9c78be1f75299
            android:fontFamily="serif"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"/>
@@ -60,23 +64,38 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="#25424242"
                 android:layout_margin="8dp"
                 ></View>
+<<<<<<< HEAD
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
                 <TextView
+=======
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/date"
+>>>>>>> d7e06ffbdcb6d67dc8d27c3fc6d9c78be1f75299
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12 April, 2018"
                     android:paddingLeft="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
+<<<<<<< HEAD
                     android:textSize="14sp"
+=======
+                    android:textSize="14dp"
+>>>>>>> d7e06ffbdcb6d67dc8d27c3fc6d9c78be1f75299
                     android:paddingBottom="16dp"
                     android:textColor="#90000000"
                     android:fontFamily="serif"
                     android:layout_alignParentLeft="true"
                     />
+<<<<<<< HEAD
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
@@ -90,6 +109,23 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     />
 
             </RelativeLayout>
+=======
+
+                <ToggleButton
+                    android:layout_marginLeft="200dp"
+                    android:textOn=""
+                    android:textOff=""
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+
+                    android:id="@+id/toggle_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/check"/>
+
+
+            </LinearLayout>
+>>>>>>> d7e06ffbdcb6d67dc8d27c3fc6d9c78be1f75299
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
