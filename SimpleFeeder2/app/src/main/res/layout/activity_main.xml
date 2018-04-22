@@ -23,10 +23,7 @@
 
           />
   <android.support.v7.widget.RecyclerView
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      tools:context="com.example.android.simplefeeder.MainActivity"
-      xmlns:tools="http://schemas.android.com/tools"
+
       android:id="@+id/recyclerView"
       android:layout_height="wrap_content"
       android:layout_marginTop="55dp"
@@ -38,7 +35,7 @@
   <android.support.design.widget.NavigationView
       android:id="@+id/navigation_view"
       android:layout_height="match_parent"
-      android:layout_width="240dp"
+      android:layout_width="270dp"
       android:layout_gravity="start"
       android:fitsSystemWindows="true"
       app:menu="@menu/drawer_menu"
