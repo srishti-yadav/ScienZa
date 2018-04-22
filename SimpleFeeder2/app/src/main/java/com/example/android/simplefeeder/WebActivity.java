@@ -3,6 +3,7 @@ package com.example.android.simplefeeder;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ShareActionProvider;
@@ -14,15 +15,24 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class WebActivity extends AppCompatActivity {
     private ShareActionProvider mActionProvider;
     private String uri;
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_web);
+        android.support.v7.widget.Toolbar toolbar=(android.support.v7.widget.Toolbar)findViewById(R.id.toolbarweb);
+        setSupportActionBar(toolbar);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
