@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="192dp"
+    android:background="#424242"
+    android:orientation="vertical"
+    >
+<ImageView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:src="@mipmap/myappicon"
+
+    android:layout_marginTop="50dp"
+    android:layout_marginLeft="25dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ScienZa"
+        android:fontFamily="serif"
+        android:textSize="22sp"
+        android:textColor="#E0E0E0"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sonamazad98@gmail.com"
+        android:fontFamily="serif"
+        android:textSize="16sp"
+        android:textColor="#E0E0E0"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"/>
+</LinearLayout>
